@@ -14,8 +14,8 @@ class Deletion{
     }
   }
 
-  //Function to delete a node
-  public void deleteNode(int key){
+  //Function to delete a node based on the data of the node
+  public void deleteNodeByData(int key){
     //Initialise a node at the start and a previous node
     Node temp = head, prev = null;
     //Cj=heck if head has to be deleted
@@ -35,6 +35,33 @@ class Deletion{
     }
     //Delete the node with given key if found by changing the reference of the previous node
     prev.next = temp.next;
+  }
+
+  //Function to delete a node based on the position of the node
+  public void deleteNodeBYPosition(int position){
+    //Check if SLL is empty
+    if(head == null){
+      return;
+    }
+
+    Node temp = head;
+    //Check if head has to deleted
+    if(position == 0){
+      head = temp.next;
+      return;
+    }
+    //Traverse the SLL till the preceding node of the position
+    for(int i=0; i<position-1;i++){
+      temp = temp.next;
+    }
+    //Check if the position is not there in the SLL
+    if(temp == null || temp.next == null){
+      return;
+    }
+    //Initialise the reference to the next node after deletion
+    Node next = temp.next.next;
+    //delete the node
+    temp.next = next;
   }
 
   //Function to insert node at the start of SLL
@@ -73,7 +100,16 @@ class Deletion{
     System.out.println("\n");
 
     System.out.println("Deleting Node with data 1 : ");
-    llist.deleteNode(1);
+    llist.deleteNodeByData(1);
+
+    System.out.println();
+
+    System.out.println("New Linked List : ");
+    llist.displayList();
+    System.out.println("\n");
+
+    System.out.println("Deleting Node with position 2 : ");
+    llist.deleteNodeBYPositon(1);
 
     System.out.println();
 
