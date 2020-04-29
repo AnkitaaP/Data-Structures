@@ -1,5 +1,5 @@
 import java.util.*;
-class Deletion{
+class Main{
   //Object for the head or starting node
   Node head;
   static class Node{
@@ -38,7 +38,7 @@ class Deletion{
   }
 
   //Function to delete a node based on the position of the node
-  public void deleteNodeBYPosition(int position){
+  public void deleteNodeByPosition(int position){
     //Check if SLL is empty
     if(head == null){
       return;
@@ -62,6 +62,11 @@ class Deletion{
     Node next = temp.next.next;
     //delete the node
     temp.next = next;
+  }
+
+  //Function to delete the complete SLL
+  public void deleteList(){
+    head = null;
   }
 
   //Function to insert node at the start of SLL
@@ -109,7 +114,7 @@ class Deletion{
     System.out.println("\n");
 
     System.out.println("Deleting Node with position 2 : ");
-    llist.deleteNodeBYPositon(1);
+    llist.deleteNodeByPosition(2);
 
     System.out.println();
 
