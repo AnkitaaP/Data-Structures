@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-public class Reverse {
+public class NodeDataAtPosition {
 
     static class SinglyLinkedListNode {
         public int data;
@@ -52,7 +52,7 @@ public class Reverse {
         }
     }
 
-    // Complete the reverse function below.
+    // Complete the getNode function below.
 
     /*
      * For your reference:
@@ -63,22 +63,28 @@ public class Reverse {
      * }
      *
      */
-    static SinglyLinkedListNode reverse(SinglyLinkedListNode head) {
+    static int getNode(SinglyLinkedListNode head, int positionFromTail) {
         if(head==null){
-            return head;
+            return 0;
         }
-        SinglyLinkedListNode prev=null;
-        SinglyLinkedListNode current=head;
-        SinglyLinkedListNode next=null;
+        int len=0;
+        SinglyLinkedListNode temp = head;
+        while(temp!=null){
+            len+=1;
+            temp=temp.next;
+        }
 
-        while(current != null){
-            next = current.next;
-            current.next=prev;
-            prev=current;
-            current=next;
+        int diff=len-positionFromTail;
+        int j=1;
+        if(positionFromTail==len){
+            return head.data;
         }
-        head=prev;
-        return head;
+        temp=head;
+        while(j<diff){
+            temp=temp.next;
+            j+=1;
+        }
+        return temp.data;
     }
 
     private static final Scanner scanner = new Scanner(System.in);

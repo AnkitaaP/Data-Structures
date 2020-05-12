@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-public class Reverse {
+public class DetectCycle {
 
     static class SinglyLinkedListNode {
         public int data;
@@ -52,7 +52,7 @@ public class Reverse {
         }
     }
 
-    // Complete the reverse function below.
+    // Complete the hasCycle function below.
 
     /*
      * For your reference:
@@ -63,22 +63,21 @@ public class Reverse {
      * }
      *
      */
-    static SinglyLinkedListNode reverse(SinglyLinkedListNode head) {
+    static boolean hasCycle(SinglyLinkedListNode head) {
         if(head==null){
-            return head;
+            return false;
         }
-        SinglyLinkedListNode prev=null;
-        SinglyLinkedListNode current=head;
-        SinglyLinkedListNode next=null;
+        SinglyLinkedListNode slow_p=head;
+        SinglyLinkedListNode fast_p=head;
 
-        while(current != null){
-            next = current.next;
-            current.next=prev;
-            prev=current;
-            current=next;
+        while(slow_p!=null && fast_p!=null && fast_p.next!=null){
+            slow_p=slow_p.next;
+            fast_p=fast_p.next.next;
+            if(slow_p==fast_p){
+                return true;
+            }
         }
-        head=prev;
-        return head;
+        return false;
     }
 
     private static final Scanner scanner = new Scanner(System.in);

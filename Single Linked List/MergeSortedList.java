@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-public class Reverse {
+public class MergeSortedList {
 
     static class SinglyLinkedListNode {
         public int data;
@@ -52,7 +52,7 @@ public class Reverse {
         }
     }
 
-    // Complete the reverse function below.
+    // Complete the mergeLists function below.
 
     /*
      * For your reference:
@@ -63,22 +63,23 @@ public class Reverse {
      * }
      *
      */
-    static SinglyLinkedListNode reverse(SinglyLinkedListNode head) {
-        if(head==null){
-            return head;
+    static SinglyLinkedListNode mergeLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
+        if(head2==null){
+            return head1;
         }
-        SinglyLinkedListNode prev=null;
-        SinglyLinkedListNode current=head;
-        SinglyLinkedListNode next=null;
-
-        while(current != null){
-            next = current.next;
-            current.next=prev;
-            prev=current;
-            current=next;
+        else if(head1==null){
+            return head2;
         }
-        head=prev;
-        return head;
+        else if(head1==null && head2==null){
+            return head1;
+        }
+        if(head1.data<head2.data){
+            head1.next=mergeLists(head1.next, head2);
+            return head1;
+        }else{
+            head2.next=mergeLists(head1, head2.next);
+            return head2;
+        }
     }
 
     private static final Scanner scanner = new Scanner(System.in);

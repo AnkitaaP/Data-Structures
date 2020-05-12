@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
-public class Reverse {
+public class RemoveDuplicateSorted {
 
     static class SinglyLinkedListNode {
         public int data;
@@ -52,7 +52,7 @@ public class Reverse {
         }
     }
 
-    // Complete the reverse function below.
+    // Complete the removeDuplicates function below.
 
     /*
      * For your reference:
@@ -63,21 +63,22 @@ public class Reverse {
      * }
      *
      */
-    static SinglyLinkedListNode reverse(SinglyLinkedListNode head) {
+    static SinglyLinkedListNode removeDuplicates(SinglyLinkedListNode head) {
         if(head==null){
             return head;
         }
-        SinglyLinkedListNode prev=null;
-        SinglyLinkedListNode current=head;
-        SinglyLinkedListNode next=null;
 
-        while(current != null){
-            next = current.next;
-            current.next=prev;
-            prev=current;
-            current=next;
+        SinglyLinkedListNode temp=head;
+    
+        while(temp!=null){
+           SinglyLinkedListNode cur=temp;
+           while(cur!=null && temp.data==cur.data){
+               cur=cur.next;
+           }
+
+            temp.next=cur;
+            temp=temp.next;
         }
-        head=prev;
         return head;
     }
 
